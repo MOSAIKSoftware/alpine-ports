@@ -1,0 +1,50 @@
+# Contributor:
+# Maintainer: Julian Ospald <hasufell@posteo.de>
+pkgname=pnmixer
+pkgver=0.6.1
+pkgrel=0
+pkgdesc="Volume mixer for the system tray"
+url="https://github.com/nicklan/pnmixer"
+arch="all"
+license="GPL3"
+depends="
+"
+makedepends="
+    alsa-lib-dev
+    autoconf
+    automake
+    glib-dev
+    gtk+3.0
+    gtk+3.0-dev
+    intltool
+    libnotify-dev
+    libx11-dev
+    pkgconfig
+"
+install=""
+subpackages="$pkgname-lang"
+source="${pkgname}-${pkgver}.tar.gz::https://github.com/nicklan/${pkgname}/archive/v${pkgver}.tar.gz"
+
+_builddir=${srcdir}/${pkgname}-${pkgver}
+
+build() {
+    cd "$_builddir"
+    ./autogen.sh \
+        --build=$CBUILD \
+        --host=$CHOST \
+        --prefix=/usr \
+        --sysconfdir=/etc \
+        --mandir=/usr/share/man \
+        --localstatedir=/var \
+        || return 1
+    make || return 1
+}
+
+package() {
+    cd "$_builddir"
+    make DESTDIR="$pkgdir" install || return 1
+}
+
+md5sums="181db8452b3896d80c8587ca6e5cfb49  pnmixer-0.6.1.tar.gz"
+sha256sums="2c611cd8d7bc5b11fbf2f8610ef20a19b541873cc87bc18a0dc5bc9baeadc08b  pnmixer-0.6.1.tar.gz"
+sha512sums="6980e54e1894e7ba9a54b3a7b794cebd065093682b0cd6b50f99b4fd2059ef966fd755a034e0055eec9c4ff9fec8215dd1f8c7e7cc2364c5e20f90f0c174f6a7  pnmixer-0.6.1.tar.gz"
