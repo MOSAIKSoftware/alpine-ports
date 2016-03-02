@@ -1,14 +1,12 @@
-# Contributor:
 # Maintainer: Julian Ospald <hasufell@posteo.de>
 pkgname=pnmixer
 pkgver=0.6.1
 pkgrel=0
 pkgdesc="Volume mixer for the system tray"
 url="https://github.com/nicklan/pnmixer"
-arch="all"
+arch="x86 x86_64"
 license="GPL3"
-depends="
-"
+depends=""
 makedepends="
     alsa-lib-dev
     autoconf
@@ -21,14 +19,18 @@ makedepends="
     libx11-dev
     pkgconfig
 "
-install=""
-subpackages="$pkgname-lang"
+install="
+    ${pkgname}.post-deinstall
+    ${pkgname}.post-install
+    ${pkgname}.post-upgrade
+"
+subpackages="${pkgname}-lang"
 source="${pkgname}-${pkgver}.tar.gz::https://github.com/nicklan/${pkgname}/archive/v${pkgver}.tar.gz"
 
 _builddir=${srcdir}/${pkgname}-${pkgver}
 
 build() {
-    cd "$_builddir"
+    cd "${_builddir}"
     ./autogen.sh \
         --build=$CBUILD \
         --host=$CHOST \
@@ -41,8 +43,7 @@ build() {
 }
 
 package() {
-    cd "$_builddir"
-    make DESTDIR="$pkgdir" install || return 1
+    make -C "${_builddir}" DESTDIR="$pkgdir" install || return 1
 }
 
 md5sums="181db8452b3896d80c8587ca6e5cfb49  pnmixer-0.6.1.tar.gz"
