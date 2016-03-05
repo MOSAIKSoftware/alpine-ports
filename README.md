@@ -59,7 +59,19 @@ abuild -r
 
 ## Docs
 
+Alpine upstream documentation:
+
 * http://wiki.alpinelinux.org/wiki/Creating_an_Alpine_package
 * http://wiki.alpinelinux.org/wiki/APKBUILD_Reference
 * http://wiki.alpinelinux.org/wiki/APKBUILD_examples
+
+Since APKBUILDs have almost the same syntax as Arch Linux PKGBUILDs, it
+may help looking at those package definitions at:
+* https://www.archlinux.org/packages/
+* https://aur.archlinux.org/
+
+Other distros that may have useful package definition information:
+* http://git.exherbo.org/summer/
+* https://gitweb.gentoo.org/repo/gentoo.git/
+* https://build.opensuse.org/search
 
