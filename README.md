@@ -31,6 +31,8 @@ newapkbuild options:
 * -u Set package URL
 * -s Use sourceforge source url
 
+This creates a skeleton which then can be modified.
+
 ### Minimal required modifications
 
 * `_builddir` must be set, often something like `${srcdir}/${pkgname}-${pkgver}`
